@@ -1,6 +1,8 @@
 require "bundler/setup"
 require "pathname"
 
+require "byebug"
+
 require "icy/form"
 require "dry/view/controller"
 require "slim"

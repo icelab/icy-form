@@ -1,4 +1,6 @@
 require "icy/form/version"
+require "icy/form/input"
+require "icy/form/view/form_part"
 
 # TODO: handle nested data and arrays of data
 # TODO: give it a prefix/name (n.b. not here, but actually in the view part)
@@ -7,8 +9,6 @@ require "icy/form/version"
 
 module Icy
   class Form
-    require "icy/form/view/form_part"
-
     UNDEFINED = Object.new.freeze
     EMPTY_HASH = {}.freeze
 
@@ -67,5 +67,14 @@ module Icy
     #   messages = @messages.fetch(key) { [] } # TODO: work out what dry-v actually does for this
     #   # yield each
     # end
+
+    def input(key, **options)
+      Input.new(
+        key: key,
+        value: value(key),
+        messages: messages(key),
+        **options,
+      )
+    end
   end
 end

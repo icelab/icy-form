@@ -1,2 +1,2 @@
-== form.for action: "/articles", method: :post, prefix: "article" do |f|
-  == f.input :title
+== form.for action: "/articles", method: :post, namespace: "article" do |f|
+  == f.input(:title).text_field

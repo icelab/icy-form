@@ -8,8 +8,8 @@ RSpec.describe "Icy::Form" do
         config.template = "test"
       end
 
-      expose :form, as: Icy::Form::View::FormPart do |input|
-        Icy::Form.new(input.fetch(:form_data))
+      expose :form, as: Icy::Form::View::FormPart do |form_data:|
+        Icy::Form.new(form_data)
       end
     end.new
   end

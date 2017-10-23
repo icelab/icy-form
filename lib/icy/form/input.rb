@@ -1,30 +1,31 @@
 module Icy
   class Form
     class Input
-      attr_reader :prefix, :key, :value, :messages
+      attr_reader :namespace, :key, :value, :messages, :options
 
-      def initialize(prefix: nil, key:, value:, messages:)
-        @prefix = prefix
+      def initialize(namespace: nil, key:, value:, messages:, **options)
+        @namespace = namespace
         @key = key
         @value = value
         @messages = messages
+        @options = options
       end
 
       def identifier
-        [prefix, key].compact.join("__")
+        [namespace, key].compact.join("__")
       end
 
+      # TODO: make this work for multi-level namespace
       def name
-        if prefix
-          "#{prefix}[#{key}]"
+        if namespace
+          "#{namespace}[#{key}]"
         else
           key
         end
       end
 
       def label
-        # TODO: make better
-        key.capitalize
+        options.fetch(:label) { key.capitalize } # TODO: make better, use inflections
       end
     end
   end
